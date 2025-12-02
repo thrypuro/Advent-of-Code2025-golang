@@ -20,16 +20,16 @@ func isValid2(num int) bool {
 		if slice == "" || len(num_seq) > len(slice) {
 			return false
 		}
-		var k int
+		var k, gg int
 		for k < le-j {
-			gg := uint(k % len(num_seq))
+			gg = (k % len(num_seq))
 			if slice[k] != num_seq[gg] {
 				isPat = false
 				break
 			}
 			k++
 		}
-		if isPat {
+		if isPat && gg == len(num_seq)-1 {
 			return true
 		}
 
@@ -59,7 +59,6 @@ func Part2() int {
 
 		for j := lower; j <= upper; j++ {
 			if isValid2(j) {
-				// println(j)
 				sum += j
 			}
 		}
