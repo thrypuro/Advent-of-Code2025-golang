@@ -6,39 +6,6 @@ import (
 	"os"
 )
 
-func calcAdajacentSumChange(grid [][]int) int {
-	adj_sum := 0
-	length := len(grid)
-	for i := range grid {
-		width := len(grid[i])
-		for j := range grid[i] {
-			elem := grid[i][j]
-			if elem != 1 {
-				continue
-			}
-			total := 0
-			adj_ind := []int{-1, 0, 1}
-			for _, v := range adj_ind {
-				for _, w := range adj_ind {
-
-					v_t := v + i
-					w_t := w + j
-					if v_t == i && w_t == j {
-						continue
-					}
-					if (v_t >= 0 && v_t < length) && (w_t >= 0 && w_t < width) {
-						total += grid[v_t][w_t]
-					}
-				}
-			}
-			if total < 4 {
-				adj_sum += 1
-			}
-		}
-	}
-	return adj_sum
-}
-
 type IndexTuple struct {
 	First  int
 	Second int
@@ -120,7 +87,7 @@ func Part2() int {
 	cur_sum := 1
 	sum := 0
 	for cur_sum != 0 {
-		cur_sum = calcAdajacentSumChange(grid)
+		cur_sum = calcAdajacentSum(grid)
 		grid = updateGrid(grid)
 		sum += cur_sum
 	}
