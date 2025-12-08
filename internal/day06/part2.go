@@ -8,23 +8,7 @@ import (
 	"strings"
 )
 
-func addSelf(row []int) int {
-	result := 0
-	for i := range row {
-		result += row[i]
-	}
-	return result
-}
-
-func multiplySelf(row []int) int {
-	result := 1
-	for i := range row {
-		result *= row[i]
-	}
-	return result
-}
-
-func Part1() int {
+func Part2() int {
 	file, err := os.Open("internal/day06/input.txt")
 	if err != nil {
 		log.Fatal(err)
@@ -64,26 +48,15 @@ func Part1() int {
 			transposed[i][j] = matrix[j][i]
 		}
 	}
-	sum := 0
-	for i, operand := range operands {
-		switch operand {
-		case "+":
-			sum += addSelf(transposed[i])
-		case "*":
-			sum += multiplySelf(transposed[i])
+	transformed := make([][]int, len(matrix[0]))
+
+	for i := range transformed {
+		transformed[i] = make([]int, len(matrix))
+		operand := operands[i]
+		for j := range transposed[i] {
+
 		}
 
 	}
-	// Debug prints
-	// for i := range transposed {
-	// 	println("\nRow ", i)
-	// 	for j := range transposed[i] {
-	// 		print(transposed[i][j], " ")
-	// 	}
-	// }
-	// for i := 0; i < len(operands); i++ {
-	// 	println("\nOperand ", i, " is ", operands[i])
-	// }
-
-	return sum
+	return 0
 }
